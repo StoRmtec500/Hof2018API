@@ -23,18 +23,6 @@ namespace Schaf.Services
             return result;
         }
 
-        public Einstellungen GetEinstellungById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(string name)
-        {
-
-           // _context.Database.ExecuteSqlCommand();
-        }
-
-
         public void UpdateEinstellungen(Einstellungen einstellungen) {
        //     _context.Einstellungen.Update(einstellungen);
          //   _context.SaveChangesAsync();
@@ -44,8 +32,19 @@ namespace Schaf.Services
         {
             _context.Attach(currentEinstellungen);
             _context.Entry(currentEinstellungen).State = EntityState.Modified;
-            currentEinstellungen.einstellungenID = _context.SaveChanges();
+            _context.SaveChanges();
             return currentEinstellungen;
         }
+
+        public Einstellungen GetEinstellungById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(string sql)
+        {
+            _context.Database.ExecuteSqlCommand(sql);
+        }
+
     }
 }

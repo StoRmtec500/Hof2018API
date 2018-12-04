@@ -27,7 +27,6 @@ namespace Schaf.Controllers
             return Ok(_einstellungenService.GetAll(sql));
         }
 
-
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Einstellungen einstellungen)
         {
@@ -49,5 +48,17 @@ namespace Schaf.Controllers
             _einstellungenService.Update(einstellungen);
 
         }
+
+
+        [HttpPost]
+        public HttpResponseMessage Post([FromBody] string sql)
+        {
+            if (sql == null || sql.Length <= 2)
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+            _einstellungenService.Insert(sql);
+            return new HttpResponseMessage(HttpStatusCode.Created);
+        }
+
     }
 }

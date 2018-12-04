@@ -11,6 +11,7 @@ namespace Schaf.Services
         IEnumerable<Einstellungen> GetAll(string sql);
         Einstellungen GetEinstellungById(int id);
         void UpdateEinstellungen(Einstellungen einstellungen);
+        void Insert(string sql);
         Einstellungen Update(Einstellungen currentEinstellungen);
     }
 }
