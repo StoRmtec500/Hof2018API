@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Belgrade.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Schaf.Models;
@@ -17,22 +14,18 @@ namespace Schaf.Controllers
     public class EinstellungenController : ControllerBase
     {
         private readonly IEinstellungen _einstellungenService;
-        private readonly IQueryPipe SqlPipe;
-        private readonly ICommand SqlCommand;
 
-        public EinstellungenController(IEinstellungen einstellungenService, ICommand sqlCommand, IQueryPipe sqlPipe)
+        public EinstellungenController(IEinstellungen einstellungenService)
         {
-            this.SqlCommand = sqlCommand;
-            this.SqlPipe = sqlPipe;
             _einstellungenService = einstellungenService ?? throw new ArgumentNullException(nameof(einstellungenService));
         }
 
         // GET: api/Einstellungen
-    /*    [HttpGet("{sql}")]
+        [HttpGet("{sql}")]
         public ActionResult<IEnumerable<Einstellungen>> GetEinstellungen(string sql)
         {
             return Ok(_einstellungenService.GetAll(sql));
-        }*/
+        }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Einstellungen einstellungen)
@@ -47,20 +40,6 @@ namespace Schaf.Controllers
             _einstellungenService.UpdateEinstellungen(einstellungen);
             
             return new NoContentResult();
-        }
-
-
-        [HttpGet]
-        public async Task Get()
-        {
-            await SqlPipe.Stream("Select * from einstellungen FOR JSON PATH", Response.Body, "[]");
-        }
-
-        [HttpGet("{sql}")]
-        public async Task Get1(string sql)
-        {
-            var cmd = new SqlCommand(sql + "FOR JSON PATH");
-            await SqlPipe.Stream(cmd, Response.Body, "[]");
         }
 
         [HttpPut]

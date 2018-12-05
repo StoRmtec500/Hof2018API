@@ -20,7 +20,7 @@ namespace Schaf
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-            .UseUrls("https://localhost:8843", "https://remote.kuenz.co.at:8843/hofuebersicht/api", "https://remote.kuenz.co.at:8843", "https://10.1.0.237:8843", "https://localhost:5000")
+            .UseUrls("https://localhost:5000", "https://10.1.0.237:8843/hofuebersicht")
                 .UseIISIntegration();
     }
 }
