@@ -59,7 +59,7 @@ namespace Schaf.Controllers
         [HttpGet("{sql}")]
         public async Task Get1(string sql)
         {
-            var cmd = new SqlCommand(sql + "FOR JSON PATH");
+            var cmd = new SqlCommand("" + sql + " FOR JSON PATH");
             await SqlPipe.Stream(cmd, Response.Body, "[]");
         }
 
