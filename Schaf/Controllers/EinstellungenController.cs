@@ -63,6 +63,12 @@ namespace Schaf.Controllers
             await SqlPipe.Stream(cmd, Response.Body, "[]");
         }
 
+        [HttpGet("getabspaenntermin/{termin}")]
+        public async Task GetAbspaenntermin(string termin)
+        {
+            await SqlPipe.Stream("select a.schaf_nr, s.ama_nummer, s.merkmal, s.geburtsdatum,DATEADD(dd,"+termin+",a.ablamm_datum) as abspaenntermin, s.bemerkung, s.geschlecht, a.lamm1_nr, a.lamm2_nr, a.lamm3_nr from ablamm a inner join schaf s ON s.schaf_nr = a.schaf_nr where a.abspaenn_datum is null and a.ablamm_datum is not null order by abspaenntermin FOR JSON PATH", Response.Body, "[]");
+        }
+
         [HttpPut]
         public void Put([FromBody]Einstellungen einstellungen)
         {
