@@ -21,7 +21,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",
-      "applicationUrl": "https://10.1.0.237:5001;http://10.1.0.237:5000;http://remote.kuenz.co.at:8843/hofuebersicht;https://10.1.0.6:8843",
+      "applicationUrl": "https://10.1.0.237:5001;http://10.1.0.237:5000;http://remote.kuenz.co.at:8843/hofuebersicht;http://10.1.0.6:8843",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
