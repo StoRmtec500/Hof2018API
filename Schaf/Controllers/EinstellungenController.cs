@@ -73,13 +73,13 @@ namespace Schaf.Controllers
         [HttpGet("getabspaenntermin/{termin}")]
         public async Task GetAbspaenntermin(string termin)
         {
-            await SqlPipe.Stream("select a.schaf_nr, s.ama_nummer, s.merkmal, s.geburtsdatum,DATEADD(dd,"+termin+",a.ablamm_datum) as abspaenntermin, s.bemerkung, s.geschlecht, a.lamm1_nr, a.lamm2_nr, a.lamm3_nr, s.ohrmarken_id, a.lfd_nr from ablamm a inner join schaf s ON s.schaf_nr = a.schaf_nr where a.abspaenn_datum is null and a.ablamm_datum is not null order by abspaenntermin FOR JSON PATH", Response.Body, "[]");
+            await SqlPipe.Stream("select a.schaf_nr, s.ama_nummer, s.merkmal, s.geburtsdatum,DATEADD(dd,"+termin+",a.ablamm_datum) as abspaenntermin, s.bemerkung, s.geschlecht, a.lamm1_nr, a.lamm2_nr, a.lamm3_nr, s.ohrmarken_id, a.lfd_nr from ablamm2018 a inner join schaf s ON s.schaf_nr = a.schaf_nr where a.abspaenn_datum is null and a.ablamm_datum is not null order by abspaenntermin FOR JSON PATH", Response.Body, "[]");
         }
 
         [HttpGet("getablammtermin/{termin}")]
         public async Task GetAblammtermin(string termin)
         {
-            await SqlPipe.Stream("select a.schaf_nr, s.ama_nummer, s.merkmal, s.geburtsdatum,DATEADD(dd," + termin + ",a.zum_widder_datum) as ablammtermin, a.ablamm_datum, s.bemerkung, s.ohrmarken_id, a.lfd_nr from ablamm a inner join schaf s ON s.schaf_nr = a.schaf_nr where a.ablamm_datum is null order by ablammtermin FOR JSON PATH", Response.Body, "[]");
+            await SqlPipe.Stream("select a.schaf_nr, s.ama_nummer, s.merkmal, s.geburtsdatum,DATEADD(dd," + termin + ",a.zum_widder_datum) as ablammtermin, a.ablamm_datum, s.bemerkung, s.ohrmarken_id, a.lfd_nr, a.ablammId from ablamm2018 a inner join schaf s ON s.schaf_nr = a.schaf_nr where a.ablamm_datum is null order by ablammtermin FOR JSON PATH", Response.Body, "[]");
         }
 
         [HttpPut]
