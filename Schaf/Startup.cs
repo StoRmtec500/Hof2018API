@@ -33,8 +33,8 @@ namespace Schaf
         {
             services.AddCors();
 
-             const string ConnString = "Server=10.1.0.237;Database=schaf_2018;User Id=sa;Password=Stormtec1#";
-            // const string ConnString = "Server=remote.kuenz.co.at;Database=schaf_2018;User Id=sa;Password=Stormtec1#";
+            // const string ConnString = "Server=10.1.0.237;Database=schaf_2018;User Id=sa;Password=Stormtec1#";
+             const string ConnString = "Server=remote.kuenz.co.at;Database=schaf_2018;User Id=sa;Password=Stormtec1#";
             services.AddTransient<IQueryPipe>(_ => new QueryPipe(new SqlConnection(ConnString)));
             services.AddTransient<ICommand>(_ => new Command(new SqlConnection(ConnString)));
 
